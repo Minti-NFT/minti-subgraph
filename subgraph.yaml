@@ -1,0 +1,51 @@
+specVersion: 0.0.2
+description: Minti Subgraph
+repository: https://github.com/EndorsifyBase/minti-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - name: SingleAsset
+    kind: ethereum/contract
+    network: mumbai
+    source:
+      address: '0x1783B2ACac561FC040a4B1f43C81429C39c94594'
+      abi: SingleAsset
+      startBlock: 14639336
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/handlers/nft.ts
+      entities:
+        - NFT
+        - Account
+      abis:
+        - name: SingleAsset
+          file: ./abis/SingleAsset.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+
+  - name: MultiAsset
+    kind: ethereum/contract
+    network: mumbai
+    source:
+      address: '0x2BB90AaC57359E0D7f0ee8306efc8a5186b06e9d'
+      abi: MultiAsset
+      startBlock: 14639342
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/handlers/nft.ts
+      entities:
+        - NFT
+        - Account
+      abis:
+        - name: MultiAsset
+          file: ./abis/MultiAsset.json
+      eventHandlers:
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch

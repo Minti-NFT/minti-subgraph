@@ -1,0 +1,28 @@
+{
+    "name": "minti-subgraph",
+    "version": "1.0.0",
+    "scripts": {
+      "create-local": "graph create minti/subgraph --node http://127.0.0.1:8020",
+      "deploy-local": "graph deploy minti/subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+      "codegen": "graph codegen --debug --output-dir src/entities/",
+      "build": "graph build",
+      "deploy": "graph deploy minti/subgraph --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug"
+    },
+    "devDependencies": {
+      "@graphprotocol/graph-cli": "^0.16.0",
+      "@graphprotocol/graph-ts": "^0.16.0",
+      "ts-node": "^8.5.4",
+      "typescript": "^3.7.4"
+    },
+    "dependencies": {
+      "babel-polyfill": "^6.26.0",
+      "babel-register": "^6.26.0",
+      "dcl-tslint-config-standard": "^2.0.0",
+      "prettier": "^1.19.1",
+      "truffle": "^5.0.4",
+      "truffle-contract": "^4.0.5",
+      "truffle-hdwallet-provider": "^1.0.4",
+      "tslint-plugin-prettier": "^2.0.1"
+    }
+  }
+  

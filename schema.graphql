@@ -1,0 +1,16 @@
+type NFT @entity {
+  id: ID!
+
+  tokenId: BigInt!
+  tokenURI: String!
+  mode: Boolean!
+
+  account: Account!
+}
+
+type Account @entity {
+  id: ID!
+
+  address: Bytes!
+  nfts: [NFT]! @derivedFrom(field: "account")
+}
